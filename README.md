@@ -1,1 +1,3 @@
-# Projects written using C++ 
+# C++ Projects
+
+Projects and tasks developed using C++
