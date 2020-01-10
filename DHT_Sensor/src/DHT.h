@@ -24,7 +24,7 @@
 #define DHT_PULSES 41
 
 
-class DHT : public  IVoidWrapper{
+class DHT{
 	private: 
 		DHT() {start = 0.0; _temperature = &start; _humidity = &start;}
 		static DHT * _instance;
@@ -43,9 +43,6 @@ class DHT : public  IVoidWrapper{
 		float get_temperature();
 		float get_humidity();
 		float get_heatIndex();
-		void callImpl(void);
-		
-	
 };
 
 #endif
