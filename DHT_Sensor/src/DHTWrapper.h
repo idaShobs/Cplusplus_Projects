@@ -9,7 +9,7 @@
 
 class DHTWrapper : private DHT {
     private:
-        DHT* _dht;
+        DHT* dht;
     public:
         DHTWrapper(uint16_t pin);
         void manual_reading();

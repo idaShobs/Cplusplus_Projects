@@ -104,11 +104,11 @@ bool DHT::pulse_setter() {
 }
 
 
-void DHT::callImpl(void) {
+void DHT::read_sensor() {
 	float div;
 	if (pulse_setter() == true) {
-		_temperature = &t;
-		_humidity = &h;
+		temperature = &t;
+		humidity = &h;
 		h = ((float)(data[0] * 256 + data[1])) / 10.0;
 		if (data[2] & 0x80) {//for minus temperature values
 			div = -10.0;
@@ -127,8 +127,8 @@ float DHT::get_heatIndex() {
 	float temperature;
 	float percentHumidity;
 	float hi;
-	temperature = *_temperature;
-	percentHumidity = *_humidity;
+	temperature = *temperature;
+	percentHumidity = *humidity;
 	temperature = convertCtoF(temperature);
 	hi = 0.5 * (temperature + 61.0 + ((temperature - 68.0) * 1.2) + (percentHumidity * 0.094));
 	if (hi > 79) {
@@ -162,15 +162,19 @@ float DHT::convertFtoC(float f) {
 }
 
 float DHT::get_temperature() {
-	if (_temperature != NULL)
-		return *_temperature;
+	if(temperature == NULL)
+		read_sensor();
+	if (temperature != NULL)
+		return *temperature;
 	else
 		return 0.0;
 }
 
 float DHT::get_humidity() {
-	if (_humidity != NULL)
-		return *_humidity;
+	if(humidity == NULL)
+		read_sensor();
+	if (humidity != NULL)
+		return *humidity;
 	else
 		return 0.0;
 }
@@ -183,6 +187,5 @@ DHT * DHT::getInstance(uint16_t pin) { return NULL; }
 float DHT::get_temperature() { return -1; }
 float DHT::get_humidity() { return -1; }
 float DHT::get_heatIndex() { return -1; }
-void DHT::callImpl(void) {}
 
 #endif

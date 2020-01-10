@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
 	unsigned long pin = std::strtoul(argv[1], NULL, 0);
 	if(argc > 1 && pin > 0){
-		DHTWrapper dht = DHTWrapper((uint6_t)pin);
+		DHTWrapper dht = DHTWrapper((uint16_t)pin);
 	}
 	else{
 		std::cout << "ERROR: GPIO Pin number must be passed as a command line argument"

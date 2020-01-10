@@ -26,14 +26,15 @@
 
 class DHT{
 	private: 
-		DHT() {start = 0.0; _temperature = &start; _humidity = &start;}
+		DHT() {start = 0.0; temperature = &start; humidity = &start;}
 		static DHT * _instance;
-		float *_temperature; 
-		float *_humidity;
+		float *temperature; 
+		float *humidity;
 		static float t, h;
 		float convertCtoF(float c);
 		float convertFtoC(float f);
 		bool pulse_setter();
+		void read_sensor();
 		static uint8_t data[5];
 		uint8_t laststate;
 		static uint16_t _pin;
