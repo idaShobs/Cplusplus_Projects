@@ -11,7 +11,6 @@
 
 #ifndef DHT_H
 #define DHT_H
-#endif
 
 // standard includes
 #include <stdio.h>
