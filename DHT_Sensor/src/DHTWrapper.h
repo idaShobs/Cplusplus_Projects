@@ -1,17 +1,13 @@
-#include "DHT.h"
-
 #ifndef DHTWrapper_H
 #define DHTWrapper_H
-#endif
+#include "DHT.h"
 
-#define READ_INTERVAL 3000
-
-class DHTWrapper : private DHT
-{
-  private:
-    DHT *dht;
-
-  public:
-    DHTWrapper(uint16_t pin);
+class DHTWrapper {
+public:
+    explicit DHTWrapper(const uint16_t pin);
     void manual_reading();
+
+private:
+    DHT* m_dht = nullptr;
 };
+#endif
